@@ -38,21 +38,7 @@
 
 数据来源：fake-api
 
-UI参考：WIP，提供的相关资料
-
-目录结构：
-
-<img src="C:\Users\25860\AppData\Roaming\Typora\typora-user-images\image-20210901160145940.png" alt="image-20210901160145940" style="zoom:80%;" />
-
-Dom树结构：
-
-​	文章列表页：
-
-<img src="C:\Users\25860\AppData\Roaming\Typora\typora-user-images\image-20210901160652636.png" alt="image-20210901160652636" style="zoom:80%;" />
-
-​	文章列表页：
-
-<img src="C:\Users\25860\AppData\Roaming\Typora\typora-user-images\image-20210901160710609.png" alt="image-20210901160710609" style="zoom:80%;" />
+UI参考：WIP、提供的相关资料
 
 
 
