@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# 掘金Demo项目文档
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```
+姓名：赵治宇
+电话：15615411381
+学校：北京交通大学
+邮箱：19301024@bjtu.edu.cn
+```
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+### 需求分析
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+总体需求：构建掘金移动端前端界面，实现基本的交互与信息读取。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+功能性需求：
 
-### `npm test`
+* 三级`Tag`（两个header一个footer），固定界面相应位置，点击实现页面跳转与文章列表更新；
+* 文章列表页包含指定种类文章列表，显示文章基本信息，点击跳转相应文章页；
+* 文章页包含作者信息与文章内容，另有固定组件供返回文章列表，同时含有评论栏，包含一级子评论栏；
+* 历史页包含用户浏览过的历史文章；
+* 无限下拉列表；
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+结构性需求：
 
-### `npm run build`
+* 使用`React`/`Vue`画UI，不可使用外部UI库；
+* UI美观，交互友好，性能稳定；
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 项目设计
 
-### `npm run eject`
+项目技术：React全家桶、node.js
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+版本控制：Git
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+开发IDE：WebStorm
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+数据来源：fake-api
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+UI参考：WIP，提供的相关资料
 
-## Learn More
+目录结构：
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="C:\Users\25860\AppData\Roaming\Typora\typora-user-images\image-20210901160145940.png" alt="image-20210901160145940" style="zoom:80%;" />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Dom树结构：
 
-### Code Splitting
+​	文章列表页：
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img src="C:\Users\25860\AppData\Roaming\Typora\typora-user-images\image-20210901160652636.png" alt="image-20210901160652636" style="zoom:80%;" />
 
-### Analyzing the Bundle Size
+​	文章列表页：
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<img src="C:\Users\25860\AppData\Roaming\Typora\typora-user-images\image-20210901160710609.png" alt="image-20210901160710609" style="zoom:80%;" />
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+### 项目实现
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+参见代码
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### 项目效果
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[https://juejinzzy.web.cloudendpoint.cn](https://juejinzzy.web.cloudendpoint.cn/)
+
+
+
+
+
+
+
+
+
+
+

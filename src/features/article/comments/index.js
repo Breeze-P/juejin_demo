@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useCallback, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchComments, clearComments } from '../commentsSlice';
 
@@ -8,12 +8,31 @@ const CommentsList = (props) => {
     const dispatch = useDispatch();
     const { id } = props;
 
+    // 实现无限下拉与阶段加载
+    const handleScroll = useCallback(() => {
+        const scrollY = window.scrollY;
+        const totalHeight = document.documentElement.scrollHeight;
+        if (totalHeight * 0.9 < scrollY && offset < total && status === 'succeeded'){
+            dispatch(fetchComments({articleId: id,
+                offset: offset,
+                limit: ((offset + 10) < total)? 10: (total - offset)
+            }));
+        }
+    }, [dispatch, id, status, total, offset])
+
     useEffect(() => {
-        dispatch(fetchComments(id));
+        dispatch(fetchComments({articleId: id}));
         return () => {
             dispatch(clearComments());
         };
     }, [id, dispatch]);
+
+    useEffect(() => {
+        window.addEventListener('scroll',handleScroll);
+        return () => {
+            window.removeEventListener('scroll',handleScroll);
+        }
+    },[offset, handleScroll])
 
     const dic = {
         1: "https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/636691cd590f92898cfcda37357472b8.svg",
@@ -25,20 +44,6 @@ const CommentsList = (props) => {
     }
 
     let content;
-
-    window.addEventListener('scroll', handleScroll);
-
-    // 实现无限下拉与阶段加载
-    function handleScroll(){
-        const scrollY = window.scrollY;
-        const totalHeight = document.documentElement.scrollHeight;
-        if (totalHeight * 0.9 < scrollY && offset < total && status === 'succeeded'){
-            dispatch(fetchComments({articleId: id,
-                offset: offset,
-                limit: ((offset + 10) < total)? 10: (total - offset)
-            }));
-        }
-    }
 
     if (status === 'loading') {
         content = <div className="loader">Loading...</div>;
@@ -59,7 +64,7 @@ const CommentsList = (props) => {
                                     {(comment.user_info.level) ? <img src={dic[comment.user_info.level]} alt="level"/>: null}
                                 </span>
                             <span className="position">
-                                {comment.user_info.description}
+                                {comment.user_info.job_title}
                                 </span>
                         </div>
                         <div className="content">
@@ -77,34 +82,37 @@ const CommentsList = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <ul className="sub-comment-list">
-                            {comment.reply_infos.map((reply, index) =>
-                                <li className="sub-comment-box" key={reply.reply_id + index}>
-                                    <div className="user-popover-box">
-                                        <img src={reply.user_info.avatar_large} alt="头像"/>
-                                    </div>
-                                    <div className='content-box'>
-                                        <div className="meta-box">
-                                            {/* eslint-disable-next-line react/style-prop-object */}
-                                            <span className="name">{comment.user_info.user_name}</span>
-                                            <span className="level">
+                        {(comment.reply_infos.length)?
+                            <ul className="sub-comment-list">
+                                {comment.reply_infos.map((reply, index) =>
+                                        <li className="sub-comment-box" key={reply.reply_id + index}>
+                                            <div className="user-popover-box">
+                                                <img src={reply.user_info.avatar_large} alt="头像"/>
+                                            </div>
+                                            <div className='content-box'>
+                                                <div className="meta-box">
+                                                    {/* eslint-disable-next-line react/style-prop-object */}
+                                                    <span className="name">{comment.user_info.user_name}</span>
+                                                    <span className="level">
                                                 {(reply.user_info.level) ? <img src={dic[reply.user_info.level]} alt="level"/>: null}
                                                 </span>
-                                            <span className="position">
-                                                {reply.user_info.description}
+                                                    <span className="position">
+                                                {reply.user_info.job_title}
                                                  </span>
-                                        </div>
-                                        <div className="content">
-                                            {reply.reply_info.reply_content}
-                                        </div>
-                                        <div className="reply-state">
+                                                </div>
+                                                <div className="content">
+                                                    {reply.reply_info.reply_content}
+                                                </div>
+                                                <div className="reply-state">
                                 <span className="time">{new Date(parseInt(reply.reply_info.ctime) * 1000).toLocaleDateString()
                                 }</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            )}
-                        </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                )}
+                            </ul> : null
+                        }
+
                     </div>
                 </li>
             )

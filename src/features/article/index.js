@@ -48,7 +48,7 @@ const Article = (props) => {
                         <Link to={`/${footer_choice}/${dicName[header_a_choice]}${(header_b_choice) ? `/${dicName[header_b_choice]}` : ''}`} className="tab-item">
                             <div className="return-return" onClick={() => {window.scrollTo(0,0)}}>
                                 <i className="iconfont icon-exit">
-                                    ⮐
+
                                 </i>
                             </div>
                         </Link>
@@ -57,7 +57,7 @@ const Article = (props) => {
                         </li>
                         <li className="tab-item">
                             <i className="iconfont icon-dian">
-                                •••
+
                             </i>
                         </li>
                     </ul>

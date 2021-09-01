@@ -95,7 +95,7 @@
     color: #333;
 }
 
-.name {
+.author-name .name {
    max-width: calc(100% - 50px);
    vertical-align: top;
    display: inline-block;
@@ -110,9 +110,11 @@
 
 
 .meta-box {
-    margin-top: 0.22rem;
-    color: #909090;
-    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: .8rem;
+    word-spacing: normal;
 }
 
 .views-count {
@@ -146,7 +148,6 @@
 
 .comment-list-box {
     padding: 0 1rem;
-    text-align: left;
 }
 
 .comment-board {
@@ -157,6 +158,16 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+}
+
+.sub-comment-list {
+    padding: .5rem;
+    background-color: #fafbfc;
+    border-radius: 12px;
+}
+
+.sub-comment-box:last-child {
+    margin-bottom: 0;
 }
 
 .sub-comment-box {
@@ -179,14 +190,6 @@ span.position {
     width: 100%;
 }
 
-.meta-box {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: .8rem;
-    word-spacing: normal;
-}
-
 .content {
     margin-top: .45rem;
     font-size: .8rem;
@@ -195,12 +198,26 @@ span.position {
     white-space: pre-wrap;
     color: #505050;
 }
-.reply-stat {
+.reply-state {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: .32rem;
     color: #8a93a0;
+}
+
+.reply-state .action-box, .reply-state .action-box .action {
+    display: flex;
+    align-items: center;
+}
+
+.reply-state .action-box {
+    justify-content: space-between;
+    min-width: 6rem;
+}
+
+.meta-box .name {
+    max-width: 128px;
 }
 
 .meta-box .name, .meta-box .position {
@@ -235,7 +252,7 @@ span.position {
     margin: 0;
     padding: 0;
 }
-.message-board.comment-box {
+.message-board .comment-box {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -257,6 +274,7 @@ span.position {
 .message-board .message-box {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     flex: 1;
     height: 100%;
     font-size: 1rem;
@@ -272,28 +290,12 @@ span.position {
     margin-right: .25rem;
 }
 
-.message-box .message-box span {
+.comment-box {
     display: flex;
     align-items: center;
-}
-
-.comment-box {
-    flex: 2 1;
-    height: 100%;
 }
 
 .message-box {
-    justify-content: space-around;
-    flex: 1 1;
-    height: 100%;
-    font-size: 1rem;
-    color: #909090;
-}
-
-.comment-box .message-board {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .tag-board-box {
@@ -308,4 +310,12 @@ span.position {
 
 .return-return {
     flex-grow: 1;
+}
+
+.icon-exit:before {
+    content: "◀";
+}
+
+.icon-dian:before {
+    content: "•••";
 }

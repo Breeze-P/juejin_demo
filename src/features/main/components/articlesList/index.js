@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {clearArticles, fetchArticles} from "../../../../states/articlesSlice";
@@ -14,28 +14,32 @@ const ArticlesList = (props) => {
 
     const { id, ho, dic } = props;
 
-    useEffect(() => {
-        dispatch(fetchArticles({categoryId: id, sortBy: ho}));
-        return () => {
-            dispatch(clearArticles());
-        }
-    }, [dispatch, id, ho]);
-
-    window.addEventListener('scroll',() => handleScroll(offset));
-
     // 实现无限下拉与阶段加载
-    function handleScroll(offset){
+    const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;
+        const para = Math.max(Math.pow(0.4, offset / 10), 0.1);
         const totalHeight = document.documentElement.scrollHeight;
-        if (totalHeight * 0.67 < scrollY && offset < total && status === 'succeeded'){
+        if (totalHeight * (1 - para) < scrollY && offset < total && status === 'succeeded'){
             dispatch(fetchArticles({categoryId: id, sortBy: ho,
                 offset: offset,
                 limit: ((offset + 10) < total)? 10: (total - offset)
             }));
         }
-    }
+    }, [dispatch, id, ho, offset, status, total]);
 
-    const ref = useRef();
+    useEffect(() => {
+        dispatch(fetchArticles({categoryId: id, sortBy: ho}))
+        return () => {
+            dispatch(clearArticles());
+        }
+    }, [dispatch, id, ho]);
+
+    useEffect(() => {
+        window.addEventListener('scroll',handleScroll);
+        return () => {
+            window.removeEventListener('scroll',handleScroll);
+        }
+    },[offset, handleScroll])
 
     let content;
 
@@ -102,7 +106,7 @@ const ArticlesList = (props) => {
     }
 
     return (
-        <div className="articles-container" ref={ref}>
+        <div className="articles-container">
             {content}
             <div className="bottom-container">
                 到底了~~~

@@ -12,8 +12,8 @@ const initialState = {
 };
 
 export const fetchComments = createAsyncThunk('comments/fetchComments',
-    async (articleId, offset = 0, limit = 10) => {
-        return await getCommentsByArticleId(articleId, offset = 0, limit = 10);
+    async ({articleId, offset=0, limit = 10}) => {
+        return await getCommentsByArticleId(articleId, offset, limit);
     }
 );
 
